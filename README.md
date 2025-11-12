@@ -19,11 +19,9 @@ Ein kleiner Windows-Assistent, der System-Benachrichtigungen einsammelt und sie 
 - Nicht-blockierend / Async
 - asyncio + qasync für nahtlose Qt-Eventloop-Integration
 
-
 🖼️ So sieht’s aus:
 
 <img width="714" height="509" alt="image" src="https://github.com/user-attachments/assets/1d02cb27-7d37-4681-9b67-7cb9ec2c49ab" />
-
 
 🔧 Technischer Überblick
 - Backend: winrt (Windows Notifications), pyttsx3 (TTS), asyncio
@@ -44,7 +42,6 @@ pip install PySide6 qasync pyttsx3 winsdk rich
 - nur Konsole: py tts_watcher.py
 - Doppelklick: Run_Notification Assistant.bat
 
-
 Hinweis: Das Paket heißt in pip meist winsdk (Python for Windows Runtime) und wird im Code als winrt.* importiert.
 Windows-Berechtigung:
 Beim ersten Start fragt Windows den Zugriff auf Benachrichtigungen ab. Er muss gewährt werden (Einstellungen → Datenschutz → Benachrichtigungen).
@@ -58,5 +55,35 @@ Beim ersten Start fragt Windows den Zugriff auf Benachrichtigungen ab. Er muss g
 🔐 Datenschutz
 - Keine Cloud: TTS läuft lokal (SAPI5/pyttsx3).
 - Keine Telemetrie: Benachrichtigungen werden nur lokal verarbeitet, nicht gespeichert oder hochgeladen.
+
+🧭 Roadmap / Offene Baustellen
+Per-App-Regeln im UI
+- Aktuell: feste Ignore-Liste (IGNORED_APPS), UI-Toggle nur für „Discord“.
+- Geplant: Liste verwalten (hinzufügen/entfernen, persistente Speicherung).
+Persistente Einstellungen
+- MAX_CHARS, Lautlos-Status, Ignorier-Liste etc. in config.json oder Registry speichern.
+- TTS-Optionen für Nutzer
+- Stimme/Rate/Volume wählbar, Test-Button, Mehrsprachigkeit.
+Benachrichtigungs-Filter
+- Keywords/Regex, Nur Titel/Körper, App-Whitelist/Blacklist.
+- Verlauf / Export
+- Letzte N Benachrichtigungen, CSV/JSON-Export, Kopieren aus dem Log.
+Hotkeys
+- Globaler Shortcut für Stumm/Weiterlesen/Pause.
+Robustheit / Kompatibilität
+- Tests auf verschiedenen Windows-Builds/Sprachen; Edge-Cases bei besonderen Toast-Layouts.
+- Besseres Handling von HTML/RTF-Content in Toasts (falls vorkommend).
+Packaging
+- Portable .exe mit PyInstaller, optional Code-Signing (Standard/EV).
+- Autoupdate (später).
+Barrierefreiheit im UI
+- Kontraste, Schriftgrößen, Tastatur-Nutzung verbessern.
+- Icon/Branding
+
+🐞 Bekannte Einschränkungen
+- Windows-only (nutzt WinRT-APIs).
+- App-spezifische Parsing-Fallbacks: bewusst entfernt → generischer Extractor (Titel + Body). Manche Apps liefern minimalistische Toasts → es kann „ohne Text“ erscheinen.
+- Keine Persistenz von Log/Settings zwischen Sessions (noch).
+- Python 3.13.1
 
   
