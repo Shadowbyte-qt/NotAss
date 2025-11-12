@@ -29,23 +29,6 @@ Ein kleiner Windows-Assistent, der System-Benachrichtigungen einsammelt und sie 
 - Optionale Konsole: rich (falls installiert)
 - Plattform: Windows 10/11 (erfordert Benachrichtigungs-Zugriff)
 
-📦 Installation & Start
-# 1) (Empfohlen) Virtuelle Umgebung
-python -m venv .venv
-. .venv/Scripts/activate
-
-# 2) Abhängigkeiten
-pip install PySide6 qasync pyttsx3 winsdk rich
-
-# 3) Start GUI
-- Start: py "Notification Assistant.py"
-- nur Konsole: py tts_watcher.py
-- Doppelklick: Run_Notification Assistant.bat
-
-Hinweis: Das Paket heißt in pip meist winsdk (Python for Windows Runtime) und wird im Code als winrt.* importiert.
-Windows-Berechtigung:
-Beim ersten Start fragt Windows den Zugriff auf Benachrichtigungen ab. Er muss gewährt werden (Einstellungen → Datenschutz → Benachrichtigungen).
-
 ⚙️ Einstellungen (aktuell)
 - Lautlos: Nur Loggen, kein TTS
 - Discord: Ein/Aus (per Checkbox, intern über IGNORED_APPS)
@@ -57,25 +40,38 @@ Beim ersten Start fragt Windows den Zugriff auf Benachrichtigungen ab. Er muss g
 - Keine Telemetrie: Benachrichtigungen werden nur lokal verarbeitet, nicht gespeichert oder hochgeladen.
 
 🧭 Roadmap / Offene Baustellen
+
 Per-App-Regeln im UI
 - Aktuell: feste Ignore-Liste (IGNORED_APPS), UI-Toggle nur für „Discord“.
 - Geplant: Liste verwalten (hinzufügen/entfernen, persistente Speicherung).
+
+
 Persistente Einstellungen
 - MAX_CHARS, Lautlos-Status, Ignorier-Liste etc. in config.json oder Registry speichern.
 - TTS-Optionen für Nutzer
 - Stimme/Rate/Volume wählbar, Test-Button, Mehrsprachigkeit.
+
+
 Benachrichtigungs-Filter
 - Keywords/Regex, Nur Titel/Körper, App-Whitelist/Blacklist.
 - Verlauf / Export
 - Letzte N Benachrichtigungen, CSV/JSON-Export, Kopieren aus dem Log.
+
+
 Hotkeys
 - Globaler Shortcut für Stumm/Weiterlesen/Pause.
+
+
 Robustheit / Kompatibilität
 - Tests auf verschiedenen Windows-Builds/Sprachen; Edge-Cases bei besonderen Toast-Layouts.
 - Besseres Handling von HTML/RTF-Content in Toasts (falls vorkommend).
+
+
 Packaging
 - Portable .exe mit PyInstaller, optional Code-Signing (Standard/EV).
 - Autoupdate (später).
+
+
 Barrierefreiheit im UI
 - Kontraste, Schriftgrößen, Tastatur-Nutzung verbessern.
 - Icon/Branding
