@@ -40,41 +40,12 @@ Ein kleiner Windows-Assistent, der System-Benachrichtigungen einsammelt und sie 
 - Keine Telemetrie: Benachrichtigungen werden nur lokal verarbeitet, nicht gespeichert oder hochgeladen.
 
 🧭 Roadmap / Offene Baustellen
-
-Per-App-Regeln im UI
-- Aktuell: feste Ignore-Liste (IGNORED_APPS), UI-Toggle nur für „Discord“.
 - Geplant: Liste verwalten (hinzufügen/entfernen, persistente Speicherung).
-
-
-Persistente Einstellungen
 - MAX_CHARS, Lautlos-Status, Ignorier-Liste etc. in config.json oder Registry speichern.
-- TTS-Optionen für Nutzer
 - Stimme/Rate/Volume wählbar, Test-Button, Mehrsprachigkeit.
-
-
-Benachrichtigungs-Filter
-- Keywords/Regex, Nur Titel/Körper, App-Whitelist/Blacklist.
-- Verlauf / Export
-- Letzte N Benachrichtigungen, CSV/JSON-Export, Kopieren aus dem Log.
-
-
-Hotkeys
-- Globaler Shortcut für Stumm/Weiterlesen/Pause.
-
-
-Robustheit / Kompatibilität
 - Tests auf verschiedenen Windows-Builds/Sprachen; Edge-Cases bei besonderen Toast-Layouts.
 - Besseres Handling von HTML/RTF-Content in Toasts (falls vorkommend).
-
-
-Packaging
-- Portable .exe mit PyInstaller, optional Code-Signing (Standard/EV).
 - Autoupdate (später).
-
-
-Barrierefreiheit im UI
-- Kontraste, Schriftgrößen, Tastatur-Nutzung verbessern.
-- Icon/Branding
 
 🐞 Bekannte Einschränkungen
 - Windows-only (nutzt WinRT-APIs).
