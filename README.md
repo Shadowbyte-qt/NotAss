@@ -1,2 +1,61 @@
 # NotAss (Notification Assistant)
-A Notification Assistant with Text to Speech (read out loud) function
+
+Ein kleiner Windows-Assistent, der System-Benachrichtigungen einsammelt und sie per TTS (Text-to-Speech) vorliest. Ideal für Fokus-Phasen, Barrierefreiheit oder Streaming/Multitasking.
+
+✨ Features
+- Windows-Toast-Benachrichtigungen sammeln (WinRT API)
+- Polling alle 2 s, Duplikat-Erkennung pro Notification-ID
+- Robustes Reconnect bei Fehlern, inklusive Workaround für sporadisches WinRT-„Falscher Parameter“
+- TTS-Vorlesen mit pyttsx3 (offline, SAPI5)
+- Global stumm schaltbar (🔇 Lautlos)
+- Sanitizing nur für TTS (z. B. Entfernen nicht unterstützter Emojis), Emojis bleiben im Log sichtbar
+- Längenlimit (Standard: MAX_CHARS = 800) mit sauberem Truncation-Suffix
+- Schlankes GUI (PySide6)
+- Live-Log mit Zeitstempel, App-Name, Warn-/Fehler-Stilen
+- Buttons: Assistent starten/stoppen, In Tray, Beenden
+- System-Tray-Integration (Öffnen/Beenden, Hintergrundbetrieb)
+- Option: Discord ansagen/ignorieren (per Checkbox)
+- Auch ohne GUI nutzbar (Konsolenmodus)
+- Nicht-blockierend / Async
+- asyncio + qasync für nahtlose Qt-Eventloop-Integration
+
+
+🖼️ So sieht’s aus:
+
+<img width="714" height="509" alt="image" src="https://github.com/user-attachments/assets/1d02cb27-7d37-4681-9b67-7cb9ec2c49ab" />
+
+
+🔧 Technischer Überblick
+- Backend: winrt (Windows Notifications), pyttsx3 (TTS), asyncio
+- Frontend: PySide6, qasync
+- Optionale Konsole: rich (falls installiert)
+- Plattform: Windows 10/11 (erfordert Benachrichtigungs-Zugriff)
+
+📦 Installation & Start
+# 1) (Empfohlen) Virtuelle Umgebung
+python -m venv .venv
+. .venv/Scripts/activate
+
+# 2) Abhängigkeiten
+pip install PySide6 qasync pyttsx3 winsdk rich
+
+# 3) Start GUI
+py "Notification Assistant.py"
+Alt: Run_Notification Assistant.bat
+nur Konsole: py tts_watcher.py
+
+Hinweis: Das Paket heißt in pip meist winsdk (Python for Windows Runtime) und wird im Code als winrt.* importiert.
+Windows-Berechtigung:
+Beim ersten Start fragt Windows den Zugriff auf Benachrichtigungen ab. Er muss gewährt werden (Einstellungen → Datenschutz → Benachrichtigungen).
+
+⚙️ Einstellungen (aktuell)
+- Lautlos: Nur Loggen, kein TTS
+- Discord: Ein/Aus (per Checkbox, intern über IGNORED_APPS)
+- MAX_CHARS: Globale maximale Textlänge (Standard 800)
+- POLL_INTERVAL: Abfrageintervall (Standard 2 s)
+
+🔐 Datenschutz
+- Keine Cloud: TTS läuft lokal (SAPI5/pyttsx3).
+- Keine Telemetrie: Benachrichtigungen werden nur lokal verarbeitet, nicht gespeichert oder hochgeladen.
+
+  
