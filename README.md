@@ -40,9 +40,10 @@ python -m venv .venv
 pip install PySide6 qasync pyttsx3 winsdk rich
 
 # 3) Start GUI
-py "Notification Assistant.py"
-Alt: Run_Notification Assistant.bat
-nur Konsole: py tts_watcher.py
+- Start: py "Notification Assistant.py"
+- nur Konsole: py tts_watcher.py
+- Doppelklick: Run_Notification Assistant.bat
+
 
 Hinweis: Das Paket heißt in pip meist winsdk (Python for Windows Runtime) und wird im Code als winrt.* importiert.
 Windows-Berechtigung:
